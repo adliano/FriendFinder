@@ -42,6 +42,7 @@
         <div class="card-body">
           <!-- ---- Form ---- -->
           <div class="form-group">
+            <!-- Get user name -->
             <label for="name">Name</label>
             <input
               type="text"
@@ -51,9 +52,9 @@
               aria-describedby="helpId"
             />
             <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
-          </div>
-
-          <div class="form-group">
+            <!-- </div> -->
+            <!-- <div class="form-group"> -->
+            <!-- Get user picture -->
             <label for="image">Link to Photo Image (Required)</label>
             <input
               type="text"
@@ -73,37 +74,42 @@
         <div class="card-header">
           <h2 class="card-title">Questions</h2>
         </div>
-        <div class="card-body">
+        <div id="surveyQUestions" class="card-body">
           <!-- TODO: -->
+          <script>
+            let questions = [
+              "Your mind is always buzzing with unexplored ideas and plans.",
+              "You find it easy to stay relaxed and focused even when there is some pressure.",
+              "You rarely do something just out of sheer curiosity.",
+              "People can rarely upset you.",
+              "It is often difficult for you to relate to other people’s feelings.",
+              "In a discussion, truth should be more important than people’s sensitivities.",
+              "You rarely get carried away by fantasies and ideas.",
+              "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
+              "You feel more energetic after spending time with a group of people."
+            ];
 
-          <h3>Question 1</h3>
-          <div class="d-flex">
-            <div class="btn-group">
-              <button type="button" class="btn btn-secondary">
-                Select an Option
-              </button>
-              <button
-                type="button"
-                class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                id="dropdownMenuReference"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                data-reference="parent"
+            for (let _question of questions) {
+              console.log(_question);
+            }
+          </script>
+
+          <!-- Question One -->
+          <div class="form-group">
+            <h4>Question 1</h4>
+            <label for=""
+              >Your mind is always buzzing with unexplored ideas and plans.
+            </label>
+            <select class="form-control" name="" id="">
+              <option value="" selected="selected" hidden="hidden"
+                >Select an Option</option
               >
-                <span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="dropdownMenuReference"
-              >
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-              </div>
-            </div>
+              <option value="1">1 (Strongly Disagree)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 (Strongly Agree)</option>
+            </select>
           </div>
 
           <!-- TODO: -->
