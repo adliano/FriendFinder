@@ -1,3 +1,5 @@
+// use fylesystem
+let fs = require("fs");
 // instanciate express
 const express = require("express");
 let app = express();
@@ -22,6 +24,24 @@ app.get("/", function(req, res) {
 // survey
 app.get("/survey", function(req, res) {
   res.sendFile(path.join(__dirname, "./app/public/survey.html"));
+});
+
+/**
+ *
+ * POSTs Routes
+ *
+ */
+app.post("/api/survey", function(req, res) {
+  console.log(req.body);
+  fs.appendFile(
+    path.join(__dirname, "./app/data/friends.js"),
+    JSON.stringify(req.body, null, 4),
+    err => {
+      if (err) throw err;
+
+      res.json({ ok: true });
+    }
+  );
 });
 
 /**

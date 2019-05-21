@@ -184,7 +184,20 @@
       score: _scores
     };
     ////// DEBUGING \\\\\\
-    console.log(_userData);
+    //console.log(_userData);
+    // Fetch to post data into server
+    fetch("/api/survey", {
+      method: "POST",
+      body: JSON.stringify(_userData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert("DATA SENT");
+        console.log(data);
+      });
   }
   // Add event listener to submit button
   document
