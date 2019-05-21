@@ -56,7 +56,9 @@
           <!-- ---- Form ---- -->
           <div class="form-group">
             <!-- Get user name -->
-            <label for="name">Name</label>
+            <label for="name"
+              ><i class="material-icons mr-2">perm_identity</i> Name</label
+            >
             <input
               type="text"
               class="form-control"
@@ -64,11 +66,10 @@
               id="userName"
               aria-describedby="helpId"
             />
-            <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
-            <!-- </div> -->
-            <!-- <div class="form-group"> -->
-            <!-- Get user picture -->
-            <label for="image">Link to Photo Image (Required)</label>
+            <label for="image"
+              ><i class="material-icons mt-2 mr-2">add_a_photo</i> Link to Photo
+              Image (Required)</label
+            >
             <input
               type="text"
               class="form-control"
@@ -89,7 +90,7 @@
         </div>
         <div id="surveyQUestions" class="card-body">
           <div class="form-group">
-            <!-- TODO: -->
+            <!-- Script used to load selectors dynamically -->
             <script>
               let questions = [
                 "Your mind is always buzzing with unexplored ideas and plans.",
@@ -122,33 +123,13 @@
               }
             </script>
           </div>
-          <!-- Question One -->
-          <!-- <div class="form-group">
-            <h4>Question 1</h4>
-            <label for=""
-              >Your mind is always buzzing with unexplored ideas and plans.
-            </label>
-            <select class="form-control" name="" id="">
-              <option value="" selected="selected" hidden="hidden"
-                >Select an Option</option
-              >
-              <option value="1">1 (Strongly Disagree)</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 (Strongly Agree)</option>
-            </select>
-          </div> -->
-
-          <!-- TODO: -->
+          <!-- :: end form :: -->
         </div>
         <!-- :: end card-body :: -->
       </div>
       <!-- :: end card :: -->
+      <!-- --- Submit Button --- -->
       <div class="text-center my-5">
-        <!-- <button class="pushy__btn pushy__btn--lg pushy__btn--blue w-75">
-          <h3><i class="material-icons">done_outline</i> Submit</h3>
-        </button> -->
         <button class="mdc-button mdc-button--raised w-75">
           <h3><i class="material-icons">done_outline</i> Submit</h3>
         </button>
