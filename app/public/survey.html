@@ -10,7 +10,7 @@
     />
 
     <!-- Pushy Button Minified Version -->
-    <link rel="stylesheet" href="../../assets/css/pushy-buttons.min.css" />
+    <!-- <link rel="stylesheet" href="../../assets/css/pushy-buttons.min.css" /> -->
 
     <!-- Bootstrap CSS -->
     <link
@@ -63,8 +63,8 @@
             <input
               type="text"
               class="form-control"
-              name="userName"
-              id="userName"
+              name="usrName"
+              id="usrName"
               aria-describedby="helpId"
             />
             <label for="image"
@@ -74,8 +74,8 @@
             <input
               type="text"
               class="form-control"
-              name="imageLink"
-              id="imageLink"
+              name="usrPicture"
+              id="usrPicture"
               aria-describedby="helpId"
             />
             <!-- <small id="helpId" class="form-text text-muted">Help text</small> -->
@@ -98,6 +98,7 @@
             <script>
               let questions = [
                 "Your mind is always buzzing with unexplored ideas and plans.",
+                "Generally speaking, you rely more on your experience than your imagination.",
                 "You find it easy to stay relaxed and focused even when there is some pressure.",
                 "You rarely do something just out of sheer curiosity.",
                 "People can rarely upset you.",
@@ -135,7 +136,7 @@
 
       <!-- --- Submit Button --- -->
       <div class="text-center my-5">
-        <button class="mdc-button mdc-button--raised w-75">
+        <button id="submitButton" class="mdc-button mdc-button--raised w-75">
           <h3><i class="material-icons">done_outline</i> Submit</h3>
         </button>
       </div>
@@ -161,3 +162,32 @@
     ></script>
   </body>
 </html>
+<!-- ******************************************************* -->
+<!-- *** Script to get data from user and send to Server *** -->
+<!-- ******************************************************* -->
+<script type="text/javascript">
+  // Function to use on Event listener (callback)
+  function onButoonClick(event) {
+    // Array to hold scores
+    let _scores = [];
+    // Get all <select> and place into an Array
+    let _selectors = document.querySelectorAll("select");
+    // Loop through Array of <select>
+    for (let _select of _selectors) {
+      // Get data from each <select> and push to _scores array
+      _scores.push(_select.value.trim());
+    }
+    // Save all user data into a JSON
+    let _userData = {
+      name: document.querySelector("#usrName").value.trim(),
+      picture: document.querySelector("#usrPicture").value.trim(),
+      score: _scores
+    };
+    ////// DEBUGING \\\\\\
+    console.log(_userData);
+  }
+  // Add event listener to submit button
+  document
+    .querySelector("#submitButton")
+    .addEventListener("click", onButoonClick);
+</script>
