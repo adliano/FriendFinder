@@ -9,12 +9,25 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+    <!-- Pushy Button Minified Version -->
+    <link rel="stylesheet" href="../../assets/css/pushy-buttons.min.css" />
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
+    />
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
   </head>
   <!-- ---------------------------- -->
@@ -75,27 +88,42 @@
           <h2 class="card-title">Questions</h2>
         </div>
         <div id="surveyQUestions" class="card-body">
-          <!-- TODO: -->
-          <script>
-            let questions = [
-              "Your mind is always buzzing with unexplored ideas and plans.",
-              "You find it easy to stay relaxed and focused even when there is some pressure.",
-              "You rarely do something just out of sheer curiosity.",
-              "People can rarely upset you.",
-              "It is often difficult for you to relate to other people’s feelings.",
-              "In a discussion, truth should be more important than people’s sensitivities.",
-              "You rarely get carried away by fantasies and ideas.",
-              "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
-              "You feel more energetic after spending time with a group of people."
-            ];
-
-            for (let _question of questions) {
-              console.log(_question);
-            }
-          </script>
-
-          <!-- Question One -->
           <div class="form-group">
+            <!-- TODO: -->
+            <script>
+              let questions = [
+                "Your mind is always buzzing with unexplored ideas and plans.",
+                "You find it easy to stay relaxed and focused even when there is some pressure.",
+                "You rarely do something just out of sheer curiosity.",
+                "People can rarely upset you.",
+                "It is often difficult for you to relate to other people’s feelings.",
+                "In a discussion, truth should be more important than people’s sensitivities.",
+                "You rarely get carried away by fantasies and ideas.",
+                "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
+                "You feel more energetic after spending time with a group of people."
+              ];
+
+              for (let i = 0; i < questions.length; i++) {
+                let _question = `<h4>Question ${i + 1}</h4>
+            <label for=""
+              >${questions[i]}
+            </label>
+            <select class="form-control" name="" id="question${i + 1}">
+              <option value="" selected="selected" hidden="hidden"
+                >Select an Option</option
+              >
+              <option value="1">1 (Strongly Disagree)</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 (Strongly Agree)</option>
+            </select>`;
+                document.write(_question);
+              }
+            </script>
+          </div>
+          <!-- Question One -->
+          <!-- <div class="form-group">
             <h4>Question 1</h4>
             <label for=""
               >Your mind is always buzzing with unexplored ideas and plans.
@@ -110,12 +138,23 @@
               <option value="4">4</option>
               <option value="5">5 (Strongly Agree)</option>
             </select>
-          </div>
+          </div> -->
 
           <!-- TODO: -->
         </div>
+        <!-- :: end card-body :: -->
+      </div>
+      <!-- :: end card :: -->
+      <div class="text-center my-5">
+        <!-- <button class="pushy__btn pushy__btn--lg pushy__btn--blue w-75">
+          <h3><i class="material-icons">done_outline</i> Submit</h3>
+        </button> -->
+        <button class="mdc-button mdc-button--raised w-75">
+          <h3><i class="material-icons">done_outline</i> Submit</h3>
+        </button>
       </div>
     </div>
+    <!-- :: end container -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
