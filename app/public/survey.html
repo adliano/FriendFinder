@@ -95,42 +95,7 @@
             <!-- ----------------------------------------- -->
             <!-- Script used to load selectors dynamically -->
             <!-- ----------------------------------------- -->
-            <script>
-              let questions = [
-                "Your mind is always buzzing with unexplored ideas and plans.",
-                "Generally speaking, you rely more on your experience than your imagination.",
-                "You find it easy to stay relaxed and focused even when there is some pressure.",
-                "You rarely do something just out of sheer curiosity.",
-                "People can rarely upset you.",
-                "It is often difficult for you to relate to other people’s feelings.",
-                "In a discussion, truth should be more important than people’s sensitivities.",
-                "You rarely get carried away by fantasies and ideas.",
-                "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
-                "You feel more energetic after spending time with a group of people."
-              ];
-
-              let container = document.querySelector("#surveyQUestions");
-
-              for (let i = 0; i < questions.length; i++) {
-                let _question = `<div class="my-4">
-                <h4>Question ${i + 1}</h4>
-                <label for="question${i + 1}">${questions[i]}</label>
-                <select 
-                class="form-control" 
-                name="question${i + 1}" 
-                id="question${i + 1}">
-                  <option value="" selected="selected" hidden="hidden">Select an Option</option>
-                  <option value="1">1 (Strongly Disagree)</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5 (Strongly Agree)</option>
-                </select>
-                </div>`;
-
-                container.insertAdjacentHTML("beforeend", _question);
-              }
-            </script>
+            <script></script>
           </div>
           <!-- :: end form :: -->
         </div>
@@ -170,6 +135,70 @@
 <!-- *** Script to get data from user and send to Server *** -->
 <!-- ******************************************************* -->
 <script type="text/javascript">
+  let questions = [
+    "Your mind is always buzzing with unexplored ideas and plans.",
+    "Generally speaking, you rely more on your experience than your imagination.",
+    "You find it easy to stay relaxed and focused even when there is some pressure.",
+    "You rarely do something just out of sheer curiosity.",
+    "People can rarely upset you.",
+    "It is often difficult for you to relate to other people’s feelings.",
+    "In a discussion, truth should be more important than people’s sensitivities.",
+    "You rarely get carried away by fantasies and ideas.",
+    "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
+    "You feel more energetic after spending time with a group of people."
+  ];
+  /**
+   *
+   * loadQuestions()
+   *
+   **/
+  // Funcion to load questions on Document
+  function loadQuestions() {
+    let container = document.querySelector("#surveyQUestions");
+
+    for (let i = 0; i < questions.length; i++) {
+      let _question = `<div class="my-4">
+        <h4>Question ${i + 1}</h4>
+        <label for="question${i + 1}">${questions[i]}</label>
+        <select 
+        class="form-control" 
+        name="question${i + 1}" 
+        id="question${i + 1}">
+        <option value="" selected="selected" hidden="hidden">Select an Option</option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Agree)</option>
+        </select>
+    </div>`;
+
+      container.insertAdjacentHTML("beforeend", _question);
+    }
+  }
+
+  // call the loadQuestions()
+  loadQuestions();
+
+  /**
+   *
+   * clearData()
+   *
+   **/
+  function clearData() {
+    document.querySelector("#surveyQUestions").innerHTML = "";
+    let inputs = document.querySelectorAll("input");
+    for (let element of inputs) {
+      element.value = "";
+    }
+    loadQuestions();
+  }
+
+  /**
+   *
+   *  onButoonClick()
+   *
+   **/
   // Function to use on Event listener (callback)
   function onButoonClick(event) {
     // Array to hold scores
@@ -179,7 +208,7 @@
     // Loop through Array of <select>
     for (let _select of _selectors) {
       // Get data from each <select> and push to _scores array
-      _scores.push(_select.value.trim());
+      _scores.push(parseInt(_select.value));
     }
     // Save all user data into a JSON
     let _userData = {
@@ -187,9 +216,7 @@
       picture: document.querySelector("#usrPicture").value.trim(),
       score: _scores
     };
-    ////// DEBUGING \\\\\\
-    //console.log(_userData);
-    // Fetch to post data into server
+
     fetch("/api/survey", {
       method: "POST",
       body: JSON.stringify(_userData),
@@ -200,9 +227,11 @@
       .then(res => res.json())
       .then(data => {
         alert("DATA SENT");
+        clearData();
         console.log(data);
       });
   }
+
   // Add event listener to submit button
   document
     .querySelector("#submitButton")
