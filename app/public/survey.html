@@ -109,12 +109,16 @@
                 "You feel more energetic after spending time with a group of people."
               ];
 
+              let container = document.querySelector("#surveyQUestions");
+
               for (let i = 0; i < questions.length; i++) {
                 let _question = `<div class="my-4">
                 <h4>Question ${i + 1}</h4>
                 <label for="question${i + 1}">${questions[i]}</label>
-                <select class="form-control" 
-                        name="question${i + 1}" id="question${i + 1}">
+                <select 
+                class="form-control" 
+                name="question${i + 1}" 
+                id="question${i + 1}">
                   <option value="" selected="selected" hidden="hidden">Select an Option</option>
                   <option value="1">1 (Strongly Disagree)</option>
                   <option value="2">2</option>
@@ -124,7 +128,7 @@
                 </select>
                 </div>`;
 
-                document.write(_question);
+                container.insertAdjacentHTML("beforeend", _question);
               }
             </script>
           </div>
