@@ -1,5 +1,6 @@
 // use fylesystem
-let fs = require("fs");
+// let fs = require("fs");
+let friends = require("./app/data/friends");
 // instanciate express
 const express = require("express");
 let app = express();
@@ -33,15 +34,15 @@ app.get("/survey", function(req, res) {
  */
 app.post("/api/survey", function(req, res) {
   console.log(req.body);
-  fs.appendFile(
-    path.join(__dirname, "./app/data/friends.js"),
-    JSON.stringify(req.body, null, 4),
-    err => {
-      if (err) throw err;
+  //   fs.appendFile(
+  //     path.join(__dirname, "./app/data/friends.js"),
+  friends.push(JSON.stringify(req.body, null, 4));
+  //     err => {
+  //       if (err) throw err;
 
-      res.json({ ok: true });
-    }
-  );
+  res.json({ ok: true });
+  //     }
+  //   );
 });
 
 /**
@@ -51,4 +52,6 @@ app.post("/api/survey", function(req, res) {
  */
 app.listen(PORT, function() {
   console.log(`Server runnig on PORT ${PORT}`);
+
+  console.log(friends);
 });
