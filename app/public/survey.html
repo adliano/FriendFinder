@@ -176,12 +176,17 @@
       container.insertAdjacentHTML("beforeend", _question);
     }
   }
+
+  // call the loadQuestions()
+  loadQuestions();
+
   /**
    *
    * clearData()
    *
    **/
   function clearData() {
+    document.querySelector("#surveyQUestions").innerHTML = "";
     let inputs = document.querySelectorAll("input");
     for (let element of inputs) {
       element.value = "";
@@ -222,13 +227,11 @@
       .then(res => res.json())
       .then(data => {
         alert("DATA SENT");
-        //clearData();
+        clearData();
         console.log(data);
       });
   }
 
-  // call the loadQuestions()
-  loadQuestions();
   // Add event listener to submit button
   document
     .querySelector("#submitButton")
