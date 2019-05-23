@@ -6,9 +6,19 @@
 
 let friends = [
   {
-    name: "adriano",
+    name: "adriano 1",
     picture: "wwww.com",
-    score: [1, 2, 3, 4, 5, 5, 4, 3, 2, 1]
+    score: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  },
+  {
+    name: "adriano 2",
+    picture: "wwww.com",
+    score: [1, 1, 1, 1, 1, 1, 1, 1, 1, 2]
+  },
+  {
+    name: "adriano 3",
+    picture: "wwww.com",
+    score: [1, 1, 1, 1, 1, 1, 1, 1, 1, 3]
   }
 ];
 
