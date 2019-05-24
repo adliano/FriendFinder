@@ -111,24 +111,6 @@
       </div>
     </div>
     <!-- :: end _container -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
     <!-- ------------------------------------- -->
     <!--     MODAL TO DISPLAY USER MATCHED     -->
     <!-- ------------------------------------- -->
@@ -156,13 +138,7 @@
           </div>
           <div class="modal-body">
             <div class="container text-center" id="setUserInfo">
-              <!-- <h2>User Name</h2>
-              <img
-                src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F968210608%2F960x0.jpg%3Ffit%3Dscale"
-                alt=""
-                height="320"
-                width="320"
-              /> -->
+              <!-- Mached User Name and Picture will be dispalyed here -->
             </div>
           </div>
           <div class="modal-footer">
@@ -187,6 +163,23 @@
     </div>
   </footer>
 </html>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"
+></script>
 <!-- ******************************************************* -->
 <!-- *** Script to get data from user and send to Server *** -->
 <!-- ******************************************************* -->
@@ -257,14 +250,29 @@
    **/
   // Function to use on Event listener (callback)
   function onButoonClick(event) {
+    if (!document.querySelector("#usrName").value) {
+      alert("Missing User Name");
+      return;
+    }
+    if (!document.querySelector("#usrPicture").value) {
+      alert("Missing Picture link");
+      return;
+    }
     // Array to hold scores
     let _scores = [];
     // Get all <select> and place into an Array
     let _selectors = document.querySelectorAll("select");
     // Loop through Array of <select>
     for (let _select of _selectors) {
-      // Get data from each <select> and push to _scores array
-      _scores.push(parseInt(_select.value));
+      let _data = _select.value;
+      // Check for any data missing
+      if (_data) {
+        // Get data from each <select> and push to _scores array
+        _scores.push(parseInt(_data));
+      } else {
+        alert("Check for missing fields");
+        return;
+      }
     }
     // Save all user data into a JSON
     let _userData = {
