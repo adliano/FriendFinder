@@ -35,7 +35,7 @@
   <!-- ---------------------------- -->
   <body class="bg-light">
     <!-- ---- _Container ---- -->
-    <div class="_container bg-secondary  mt-3 py-3">
+    <div class="container bg-secondary  mt-3 py-3">
       <!-- -- Jumbotron -- -->
       <div class="jumbotron">
         <h1 class="display-3 text-center">Survey Questions</h1>
@@ -216,9 +216,9 @@
       let _question = `<div class="my-4">
         <h4>Question ${i + 1}</h4>
         <label for="question${i + 1}">${questions[i]}</label>
-        <select 
-        class="form-control" 
-        name="question${i + 1}" 
+        <select
+        class="form-control"
+        name="question${i + 1}"
         id="question${i + 1}">
         <option value="" selected="selected" hidden="hidden">Select an Option</option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -284,21 +284,31 @@
       .then(data => {
         clearData();
         console.log(data);
-        /////////////////////////////////TODO: need to fix
+        // Create element to show user name and picture on modal
         let _element = `<h2>${data.name}</h2>
         <img src="${data.picture}" alt="" height="320" width="320"/>`;
         // Get Parent element
-        let _parent = document.querySelector("#modalShowMatched");
+        let _parent = document.querySelector("#setUserInfo");
         // Add match info to element
-        // _parent.insertAdjacentHTML("beforeend", _element);
-        _parent.innerHTML = _element;
+        _parent.insertAdjacentHTML("beforeend", _element);
         // Show MModal with match info
         $("#modalShowMatched").modal("show");
       });
   }
-
+  /**
+   *
+   * Event Listners
+   *
+   */
   // Add event listener to submit button
   document
     .querySelector("#submitButton")
     .addEventListener("click", onButoonClick);
+  // Event to clear modal data after user colse it
+  $("#modalShowMatched").on("hidden.bs.modal", function(event) {
+    // Get Parent element
+    let _parent = document.querySelector("#setUserInfo");
+    // clear elements inside parent
+    _parent.innerHTML = "";
+  });
 </script>
