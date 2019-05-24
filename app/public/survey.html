@@ -34,7 +34,7 @@
   <!-- ------------ BODY ---------- -->
   <!-- ---------------------------- -->
   <body class="bg-light">
-    <!-- ---- Container ---- -->
+    <!-- ---- _Container ---- -->
     <div class="container bg-secondary  mt-3 py-3">
       <!-- -- Jumbotron -- -->
       <div class="jumbotron">
@@ -110,7 +110,7 @@
         </button>
       </div>
     </div>
-    <!-- :: end container -->
+    <!-- :: end _container -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -129,7 +129,63 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <!-- ------------------------------------- -->
+    <!--     MODAL TO DISPLAY USER MATCHED     -->
+    <!-- ------------------------------------- -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modalShowMatched"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Best Match</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container text-center" id="setUserInfo">
+              <!-- <h2>User Name</h2>
+              <img
+                src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F968210608%2F960x0.jpg%3Ffit%3Dscale"
+                alt=""
+                height="320"
+                width="320"
+              /> -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- :: END OF MODAL :: -->
   </body>
+  <footer class="footer my-2 mx-0">
+    <div class="container">
+      <!-- TODO: show list of friends by setting the rout for it -->
+      <a href="#">API Friends List</a> |
+      <a href="https://github.com/adliano/FriendFinder">Github Repo</a>
+    </div>
+  </footer>
 </html>
 <!-- ******************************************************* -->
 <!-- *** Script to get data from user and send to Server *** -->
@@ -154,15 +210,15 @@
    **/
   // Funcion to load questions on Document
   function loadQuestions() {
-    let container = document.querySelector("#surveyQUestions");
+    let _container = document.querySelector("#surveyQUestions");
 
     for (let i = 0; i < questions.length; i++) {
       let _question = `<div class="my-4">
         <h4>Question ${i + 1}</h4>
         <label for="question${i + 1}">${questions[i]}</label>
-        <select 
-        class="form-control" 
-        name="question${i + 1}" 
+        <select
+        class="form-control"
+        name="question${i + 1}"
         id="question${i + 1}">
         <option value="" selected="selected" hidden="hidden">Select an Option</option>
         <option value="1">1 (Strongly Disagree)</option>
@@ -173,7 +229,7 @@
         </select>
     </div>`;
 
-      container.insertAdjacentHTML("beforeend", _question);
+      _container.insertAdjacentHTML("beforeend", _question);
     }
   }
 
@@ -187,8 +243,8 @@
    **/
   function clearData() {
     document.querySelector("#surveyQUestions").innerHTML = "";
-    let inputs = document.querySelectorAll("input");
-    for (let element of inputs) {
+    let _inputs = document.querySelectorAll("input");
+    for (let element of _inputs) {
       element.value = "";
     }
     loadQuestions();
@@ -226,14 +282,33 @@
     })
       .then(res => res.json())
       .then(data => {
-        alert("DATA SENT");
         clearData();
         console.log(data);
+        // Create element to show user name and picture on modal
+        let _element = `<h2>${data.name}</h2>
+        <img src="${data.picture}" alt="" height="320" width="320"/>`;
+        // Get Parent element
+        let _parent = document.querySelector("#setUserInfo");
+        // Add match info to element
+        _parent.insertAdjacentHTML("beforeend", _element);
+        // Show MModal with match info
+        $("#modalShowMatched").modal("show");
       });
   }
-
+  /**
+   *
+   * Event Listners
+   *
+   */
   // Add event listener to submit button
   document
     .querySelector("#submitButton")
     .addEventListener("click", onButoonClick);
+  // Event to clear modal data after user colse it
+  $("#modalShowMatched").on("hidden.bs.modal", function(event) {
+    // Get Parent element
+    let _parent = document.querySelector("#setUserInfo");
+    // clear elements inside parent
+    _parent.innerHTML = "";
+  });
 </script>
