@@ -1,10 +1,7 @@
 // use fylesystem
-// let friends = require("./app/data/friends");
 // instanciate express
 const express = require("express");
 let app = express();
-// init path nodejs module
-const path = require("path");
 // Default PORT used by listener for routing
 const PORT = process.env.PORT || 3000;
 
@@ -14,20 +11,6 @@ app.use(express.json());
 
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
-
-/**************************************
- *
- * GETs Routes
- *
- **************************************/
-// home
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "./app/public/home.html"));
-// });
-// survey
-// app.get("/survey", function(req, res) {
-//   res.sendFile(path.join(__dirname, "./app/public/survey.html"));
-// });
 
 /**************************************
  *

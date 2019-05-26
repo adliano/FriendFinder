@@ -1,12 +1,18 @@
-# FriendFinder
+# :heart: **FriendFinder** :heart:
+
+<hr>
+<!-- <h1 style="color:blue">FriendFinder</h1> -->
+<!-- [GitHub](http://github.com) -->
 
 FriendFinder
 
-A dating application. This full-stack site will take in results from users' surveys, then compare their answers with those from other users.
+A dating application. This full-stack site will take in results from user's surveys, then compare their answers with those from other users.
 The app will then display the name and picture of the user with the best overall match.
 
-# npm install nodemon
+## Required npm packages
 
-https://www.npmjs.com/package/nodemon
+- [express](https://www.npmjs.com/package/express)
 
-# npm install express
+## How to run
+
+`node server.js`
