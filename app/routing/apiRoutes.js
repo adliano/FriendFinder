@@ -46,11 +46,20 @@ function findMatch(usrScore) {
 
 function apiRoutes(app) {
   // API Friends
+  /**************************************
+   *
+   * GETs Routes
+   *
+   **************************************/
   app.get("/api/friends", function(req, res) {
     res.send(friends);
   });
 
-  //   app.post("/api/survey", function(req, res) {
+  /**************************************
+   *
+   * POSTs Routes
+   *
+   **************************************/
   app.post("/api/friends", function(req, res) {
     // Call method findMath() to find Matched user
     findMatch(req.body.score).then(user => {
