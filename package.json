@@ -2,7 +2,7 @@
   "name": "tech.alves.friendfinder",
   "version": "1.0.0",
   "description": "Dating Application to find your best match",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
